@@ -2,9 +2,46 @@ import React from 'react';
 import job from "../Assets/jobs.jpg";
 import { Button } from 'primereact/button';
 import Navbar from './Navbar';
-import JobListing from './JobListing';
+import InterviewPreparation from './InterviewPreparation';
+import Job from './Jobs';
+import ResumeBuilder from './ResumeBuilder';
 
 const Hero = () => {
+  const jobs = [
+    {
+      id: 1,
+      title: "React Frontend Development",
+      company: "ABC Company",
+      location: "New York, NY",
+      description: "Build responsive React ChatGPT frontend replica - Upwork We are seeking a skilled React developer with expertise in TailwindCSS to create a high-fidelity replica of the ChatGPT web frontend. This project requires a keen eye for design and detail, as the goal is to mimic the look and feel of the ChatGPT interface closely, without the need for backend integration.",
+      applyLink: "https://www.crackeddevs.com/job/105076"
+    },
+    {
+      id: 2,
+      title: "Software Engineering Intern",
+      company: "XYZ Inc.",
+      location: "San Francisco, CA",
+      description: "At Mysten Labs, we're on a mission to construct the pillars of the next-gen internet of value. We are passionate about developing open and decentralized protocols, leveraging blockchain technologies to push the frontier of what's possible. As part of our dynamic team, you'll contribute to the creation of cutting-edge infrastructure that propels the widespread adoption ",
+      applyLink: "https://www.crackeddevs.com/job/100692"
+    },
+    {
+      id: 3,
+      title: "Senior Full-Stack Developer",
+      company: "Tech Solutions",
+      location: "Los Angeles, CA",
+      description: "Collaborate with research and development engineering team and external collaborators Design and implement new features and fix bugs for platforms and web applications Contribute to overall architecture design Maintain scalability, code integrity, and usability of applications Participate in team's software quality assurance practices Work on multiple projects for a variety of customers Be an excellent communicator with local and remote teammates Translate scientific requirements into technical and architectural application requirements",
+      applyLink: "https://www.crackeddevs.com/job/99351"
+    },
+    {
+      id: 4,
+      title: "DevSecOps Engineer",
+      company: "Tech Innovations",
+      location: "Chicago, IL",
+      description: "Security Operations (SecOps): Lead security operations efforts, including threat detection, incident response, and vulnerability management, to safeguard infrastructure and data assets. Design security operations infrastructure specific to the organization’s AI and machine learning initiatives. Conduct security assessments, penetration testing, and audits to identify and mitigate security risks. Supporting DevOps Infrastructure and Automation: Assist DevOps team in designing, implementing, and maintaining scalable infrastructure.er access, authentication, and authorization.",
+      applyLink: "https://www.crackeddevs.com/job/106191"
+    },
+    
+  ];
   return (
     <>
     <Navbar/>    
@@ -80,7 +117,9 @@ const Hero = () => {
         </div>
     </div>
 </div>
-    
+<ResumeBuilder/>
+<Job jobs={jobs} />
+    <InterviewPreparation/>
  
     </>
 
