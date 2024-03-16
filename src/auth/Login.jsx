@@ -3,13 +3,17 @@ import './Login.css';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom';
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
-
+  const naviagte = useNavigate();
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
-
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    naviagte("/");
+  };
   return (
     <div className="login-container">
       <div className="left-section">
@@ -19,7 +23,7 @@ const Login = () => {
         <div className="login-form">
           <h2 className="form-heading">Get Started Now</h2>
           <p className="form-heading">Enter your credentials to access your account</p>
-          <form>
+          <form onSubmit={handleSubmit}>
           <div className="form-group">
   <label htmlFor="email"  className='formlable'>Email address*</label>
   <input type="email" id="email" placeholder="abc@gmail.com" required />  
@@ -50,7 +54,7 @@ const Login = () => {
             <button className="login-button" type="submit">
               Login
             </button>
-            <p>Don't have an account? <span className='signup'>Sign up</span></p>
+            <p>Don't have an account? <a href="/signup" className='signup'>Sign up</a></p>
           </form>
         </div>
        

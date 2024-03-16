@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Loading from "./Loading";
 import axios from "axios";
+import Navbar from "./Navbar";
 
 const Home = ({ setResult }) => {
 	const [fullName, setFullName] = useState("");
@@ -12,47 +13,53 @@ const Home = ({ setResult }) => {
 	const [companyInfo, setCompanyInfo] = useState([{ name: "", position: "" }]);
 	const [loading, setLoading] = useState(false);
 	const navigate = useNavigate();
-
+  
 	const handleAddCompany = () =>
-		setCompanyInfo([...companyInfo, { name: "", position: "" }]);
-
+	  setCompanyInfo([...companyInfo, { name: "", position: "" }]);
+  
 	const handleRemoveCompany = (index) => {
-		const list = [...companyInfo];
-		list.splice(index, 1);
-		setCompanyInfo(list);
+	  const list = [...companyInfo];
+	  list.splice(index, 1);
+	  setCompanyInfo(list);
 	};
+  
 	const handleUpdateCompany = (e, index) => {
-		const { name, value } = e.target;
-		const list = [...companyInfo];
-		list[index][name] = value;
-		setCompanyInfo(list);
+	  const { name, value } = e.target;
+	  const list = [...companyInfo];
+	  list[index][name] = value;
+	  setCompanyInfo(list);
 	};
-
+  
 	const handleFormSubmit = (e) => {
-		e.preventDefault();
-
-		const formData = new FormData();
-		formData.append("headshotImage", headshot, headshot.name);
-		formData.append("fullName", fullName);
-		formData.append("currentPosition", currentPosition);
-		formData.append("currentLength", currentLength);
-		formData.append("currentTechnologies", currentTechnologies);
-		formData.append("workHistory", JSON.stringify(companyInfo));
-		axios
-			.post("http://localhost:4000/resume/create", formData, {})
-			.then((res) => {
-				if (res.data.message) {
-					setResult(res.data.data);
-					navigate("/resume");
-				}
-			})
-			.catch((err) => console.error(err));
-		setLoading(true);
+	  e.preventDefault();
+  
+	  const formData = new FormData();
+	  formData.append("headshotImage", headshot, headshot.name);
+	  formData.append("fullName", fullName);
+	  formData.append("currentPosition", currentPosition);
+	  formData.append("currentLength", currentLength);
+	  formData.append("currentTechnologies", currentTechnologies);
+	  formData.append("workHistory", JSON.stringify(companyInfo));
+  
+	  axios
+		.post("http://localhost:4000/resume/create", formData, {})
+		.then((res) => {
+		  console.log(res);
+		  if (res.data.message) {
+			setResult(res.data.data);
+			navigate("/resume");
+		  }
+		})
+		.catch((err) => console.error(err));
+	  setLoading(true);
 	};
+  
 	if (loading) {
-		return <Loading />;
+	  return <Loading />;
 	}
 	return (
+		<>
+		<Navbar/>		
 		<div className='app'>
 			<h1>Resume Builder</h1>
 			<p>Generate a resume with ChatGPT in few seconds</p>
@@ -159,6 +166,8 @@ const Home = ({ setResult }) => {
 				<button>CREATE RESUME</button>
 			</form>
 		</div>
+		</>
+
 	);
 };
 
